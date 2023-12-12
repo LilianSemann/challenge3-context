@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useReducer } from "react";
 import { ITodos, IAction } from "./types/tasks";
 import { TasksDispatch } from "./types/context";
 
@@ -68,5 +68,4 @@ const initialList = [
 ]
 
 export const TasksContext = createContext(initialList);
-export const TasksModalContext = createContext(false);
 export const TasksDispatchContext = createContext<TasksDispatch | undefined>(undefined); 

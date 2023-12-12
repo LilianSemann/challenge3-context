@@ -1,6 +1,7 @@
 "use client"
 
 import { TasksContext, TasksDispatchContext } from "@/taskcontext"
+import { ITodos } from "@/types/tasks"
 import { useContext, useState } from "react"
 
 export default function EditTodo() {
@@ -26,6 +27,10 @@ export default function EditTodo() {
                     <button className="py-1 px-2 border border-zinc-300 rounded-md font-light">delete</button>
                 </div>
             </section>
+        </>
+    ); else return (
+        <>
+            <button>edit</button>
         </>
     )
 
