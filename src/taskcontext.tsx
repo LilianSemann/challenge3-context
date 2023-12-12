@@ -1,9 +1,8 @@
 "use client"
 
-import { createContext, useReducer } from "react";
+import { createContext, useContext, useReducer } from "react";
 import { ITodos, IAction } from "./types/tasks";
 import { TasksDispatch } from "./types/context";
-
 
 export default function TasksProvider({ children }: { children: React.ReactNode }) {
 
@@ -34,6 +33,17 @@ function tasksReducer(tasks: ITodos[], action: IAction) {
             return tasks.filter(t => t.id !== action.task.id)
         }
 
+        case "toggle": {
+            return tasks.map(t => {
+                if (t.id === action.task.id) {
+                    return { ...t, done: !t.done };
+                } else {
+                    return t;
+                }
+            });
+        }
+        
+
         case "update": {
             return tasks.map(t => {
                 if (t.id === action.task.id) {
@@ -58,4 +68,5 @@ const initialList = [
 ]
 
 export const TasksContext = createContext(initialList);
+export const TasksModalContext = createContext(false);
 export const TasksDispatchContext = createContext<TasksDispatch | undefined>(undefined); 

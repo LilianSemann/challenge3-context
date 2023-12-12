@@ -1,11 +1,12 @@
 "use client"
 
-import { TasksContext } from "@/taskcontext"
+import { TasksContext, TasksDispatchContext } from "@/taskcontext"
 import { useContext } from "react"
 import AddTodo from "./addtodo"
 
 export default function List() {
     
+    const dispatch = useContext(TasksDispatchContext)
     const tasks = useContext(TasksContext)
 
     return (
@@ -23,9 +24,9 @@ export default function List() {
                      <tbody className="font-light">
                         {tasks.map((t) => (
                             <tr key={t.id} className="odd:bg-zinc-50">
-                                <td className="py-2 px-3 w-[10%]">{t.id}</td>
+                                <td className="py-2 px-3 w-[10%]"><input type="checkbox" defaultChecked={t.done} className="cursor-pointer h-3 w-3" onClick={() => dispatch!({type: 'toggle', task: t})}/></td>
                                 <td style={{textDecorationLine: (t.done?  "line-through" : "none"), color: (t.done?  "rgb(156 163 175)" : "black")}} className="py-2 w-[80%]">{t.title}</td>
-                                <td style={{color: (t.done?  "rgb(252 165 165)" : "rgb(156 163 175)")}} className="py-2 px-3 w-[10%] text-sm text-gray-400 text-end group flex relative"></td>
+                                <td style={{color: (t.done? "rgb(252 165 165)" : "rgb(156 163 175)")}} className="py-2 px-3 w-[10%] text-sm text-gray-400 text-end group flex relative"></td>
                             </tr>
                         ))}
                     </tbody>
