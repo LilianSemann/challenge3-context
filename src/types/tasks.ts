@@ -1,4 +1,4 @@
-export interface ITodos {
+export interface ITodo {
     id: number
     title: string
     done: boolean
@@ -6,5 +6,5 @@ export interface ITodos {
 
 export interface IAction {
     type: string
-    task: ITodos
+    task: ITodo
 }

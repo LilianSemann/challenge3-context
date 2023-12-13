@@ -1,7 +1,7 @@
 "use client"
 
 import { createContext, useReducer } from "react";
-import { ITodos, IAction } from "./types/tasks";
+import { ITodo, IAction } from "./types/tasks";
 import { TasksDispatch } from "./types/context";
 
 export default function TasksProvider({ children }: { children: React.ReactNode }) {
@@ -17,7 +17,7 @@ export default function TasksProvider({ children }: { children: React.ReactNode 
     )
 }
 
-function tasksReducer(tasks: ITodos[], action: IAction) {
+function tasksReducer(tasks: ITodo[], action: IAction) {
     switch (action.type) {
         case "added": {
             return [
@@ -42,7 +42,6 @@ function tasksReducer(tasks: ITodos[], action: IAction) {
                 }
             });
         }
-        
 
         case "update": {
             return tasks.map(t => {
@@ -59,7 +58,6 @@ function tasksReducer(tasks: ITodos[], action: IAction) {
         }
     }
 }
-
 
 const initialList = [
     {id: 0, title: "a", done: false},
